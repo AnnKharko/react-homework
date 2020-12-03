@@ -5,7 +5,9 @@ class BodyPostComponent extends Component {
         let {item} = this.props;
         return (
             <div className={'body'}>
-                {item.body}
+
+                {item.title}
+                <p> {item.body} </p>
             </div>
         );
     }
