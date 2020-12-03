@@ -1,0 +1,9 @@
+.target {
+    background-color: lightgrey;
+    margin-top: 5px;
+}
+.body {
+    background-color: darkcyan;
+    padding: 10px;
+    color: white;
+}
