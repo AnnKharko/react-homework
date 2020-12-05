@@ -2,14 +2,16 @@ import React, {Component} from 'react';
 import PostComponent from "../post/PostComponent";
 import './allPostStyle.css';
 import BodyPostComponent from "../post/BodyPostComponent";
+import {PostService} from "../../services/PostService";
 
 class AllPostsComponent extends Component {
     state = {posts: [], classState: 'one', chosenPost: null};
     flag = false;
 
+    postService = new PostService();
+
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(value => value.json())
+        this.postService.getAllPosts()
             .then(postsFromAPI => {
                 this.setState({posts: postsFromAPI});
             });
@@ -25,10 +27,8 @@ class AllPostsComponent extends Component {
     }
 
     selectPost = (id) => {
-        let chosenPost = this.state.posts.find(value => value.id === id);
-        this.setState({chosenPost});
-
-
+        this.postService.getPostById(id)
+            .then( onePost => this.setState({chosenPost: onePost}) );
     }
 
     render() {
