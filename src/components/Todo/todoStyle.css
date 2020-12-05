@@ -1,0 +1,14 @@
+.target{
+    background-color: lightgrey;
+    margin-top: 5px;
+}
+.next {
+    background-color: gray;
+    margin-top: 5px;
+}
+.one{
+    background-color: darkcyan;
+}
+.two{
+    background-color: silver;
+}
