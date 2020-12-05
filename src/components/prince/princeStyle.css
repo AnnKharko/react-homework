@@ -1,0 +1,8 @@
+.prince{
+    background-color: darkslategray;
+    color: lightgrey;
+    width: 200px;
+    border: solid darkgrey 1px;
+    margin: 1px;
+    padding: 5px;
+}
