@@ -1,0 +1,14 @@
+.target {
+    background-color: darkcyan;
+    color: white;
+}
+.one {
+    background-color: lightgrey;
+}
+.two{
+    background-color: white;
+}
+p{ margin: 0;
+  padding: 0;
+    color: brown;
+}
