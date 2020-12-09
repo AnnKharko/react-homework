@@ -7,6 +7,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import AllCommentsComponent from "./components/allComments/AllCommentsComponent";
 
 class App extends Component {
     render() {
@@ -24,6 +25,11 @@ class App extends Component {
                                 Posts
                             </Link>
                         </div>
+                        <div>
+                            <Link to={'/comments'}>
+                                Comments
+                            </Link>
+                        </div>
 
                         <hr/>
                         <Switch>
@@ -31,6 +37,9 @@ class App extends Component {
                                return  <AllUsersComponent/>
                             }}/>
                             <Route path={'/posts'} component={AllPostsComponent}/>
+                            <Route path={'/comments'} render = {() => {
+                                return  <AllCommentsComponent/>
+                            }}/>
                         </Switch>
                         <hr/>
                     </div>

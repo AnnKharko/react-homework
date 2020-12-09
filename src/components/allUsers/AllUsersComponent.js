@@ -2,6 +2,13 @@ import React, {Component} from 'react';
 import {UserService} from "../../services/UserService";
 import UserComponent from "../user/UserComponent";
 import './AllUserStyle.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import CommentComponent from "../comment/CommentComponent";
 
 
 class AllUsersComponent extends Component {
@@ -19,7 +26,12 @@ class AllUsersComponent extends Component {
             <div>
                 {users.map(value => <UserComponent item = {value} key = {value.id}/>)}
                 <div className={'nest'}>
-
+                    <Switch>
+                        <Route path = {'/users/:id'} render={(props) => {
+                            console.log(props);
+                            return  'Here will be some user info! '
+                                }}/>
+                    </Switch>
                 </div>
             </div>
 
@@ -28,3 +40,4 @@ class AllUsersComponent extends Component {
 }
 
 export default AllUsersComponent;
+// export default withRouter(AllUsersComponent);
