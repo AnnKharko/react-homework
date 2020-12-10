@@ -6,9 +6,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  withRouter
 } from "react-router-dom";
-import CommentComponent from "../comment/CommentComponent";
+import FullUserComponent from "../fullUser/FullUserComponent";
 
 
 class AllUsersComponent extends Component {
@@ -28,8 +29,8 @@ class AllUsersComponent extends Component {
                 <div className={'nest'}>
                     <Switch>
                         <Route path = {'/users/:id'} render={(props) => {
-                            console.log(props);
-                            return  'Here will be some user info! '
+                             const {match:{params:{id}}} = props;
+                            return  <FullUserComponent {...props} key = {id}/>
                                 }}/>
                     </Switch>
                 </div>
@@ -39,5 +40,4 @@ class AllUsersComponent extends Component {
     }
 }
 
-export default AllUsersComponent;
-// export default withRouter(AllUsersComponent);
+export default withRouter(AllUsersComponent);

@@ -6,5 +6,10 @@ export class PostService {
             .then(value => value.json());
 
     }
+    async getPostById(id) {
+        return await fetch(`${this.url}/${id}`)
+            .then(value => value.json());
+
+    }
 
 }

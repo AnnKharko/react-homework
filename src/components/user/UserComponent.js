@@ -7,7 +7,6 @@ import {
     withRouter
 } from "react-router-dom";
 
-
 class UserComponent extends Component {
     render() {
         let {match: {url}, item} = this.props;
@@ -22,4 +21,3 @@ class UserComponent extends Component {
 }
 
 export default withRouter(UserComponent);
-// export default UserComponent;

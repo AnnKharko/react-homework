@@ -5,8 +5,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  withRouter
 } from "react-router-dom";
+import FullPostComponent from "../fullPost/FullPostComponent";
 
 class AllPostsComponent extends Component {
     state = { posts:[]};
@@ -26,8 +28,8 @@ class AllPostsComponent extends Component {
                 <div className={'nest'}>
                     <Switch>
                         <Route path={'/posts/:id'} render={(props) => {
-                            console.log(props);
-                            return 'Here will be some post info!'
+                            const {match : {params: {id}}} = props;
+                            return < FullPostComponent {...props} key = {id}/>
                         }}/>
 
                     </Switch>
@@ -38,4 +40,4 @@ class AllPostsComponent extends Component {
     }
 }
 
-export default AllPostsComponent;
+export default withRouter (AllPostsComponent);
