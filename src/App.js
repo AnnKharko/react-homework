@@ -1,15 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from "react-redux";
-import {INC_COUNTER,
-    DEC_COUNTER,
-    RESET_COUNTER} from './redux/action-types';
+import {incCounter, decCounter, resetCounter,
+     setTodos} from './redux/action-creators';
 
 export default function App() {
-    const counter = useSelector(({counter}) => counter);
+    // const test = useSelector((state) => {
+    //     console.log(state);
+    //     return state;
+    // })
+
+    // ---ONE WAY----
+    // const counter = useSelector(({counter}) => counter.counter);
+    // const todos = useSelector(({todos}) => todos.todos)
+    //----ANOTHER WAY---
+    const {counter, todos} = useSelector(({counter: {counter}, todos: {todos}}) => ({todos, counter}));
+
+
     const dispatch = useDispatch();
-    const handleInc = () => dispatch({type: INC_COUNTER});
-    const handleDec = () => dispatch({type: DEC_COUNTER});
-    const handleReset = () => dispatch({type: RESET_COUNTER});
+    useEffect(() =>{
+        fetchTodos()
+    },[])
+    const fetchTodos = async() => {
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+        const data = await response.json();
+        dispatch(setTodos(data));
+    }
+
+
+    const handleInc = () => dispatch(incCounter());
+    const handleDec = () => dispatch(decCounter());
+    const handleReset = () => dispatch(resetCounter());
 
     return (
         <div>
@@ -17,6 +37,11 @@ export default function App() {
             <button onClick={handleInc}>Inc</button>
             <button onClick={handleDec}>Dec</button>
             <button onClick={handleReset}>Reset</button>
+            { todos.map((todo) =>
+            <h2>
+                {todo.id} - {todo.title}
+            </h2>)}
+
         </div>
     )
 }
